@@ -1,4 +1,4 @@
-package com.gopiandcode.ga.algorithm.bitstring;
+package com.gopiandcode.ga.bitstring;
 
 import com.google.common.collect.ImmutableList;
 import com.gopiandcode.ga.algorithm.interfaces.CrossoverStrategy;

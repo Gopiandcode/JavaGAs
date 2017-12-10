@@ -1,4 +1,4 @@
-package com.gopiandcode.ga.algorithm.bitstring;
+package com.gopiandcode.ga.bitstring;
 
 import java.util.Iterator;
 import java.util.concurrent.ThreadLocalRandom;

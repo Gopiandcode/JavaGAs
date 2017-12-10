@@ -40,11 +40,12 @@ public class GeneticAlgorithmRunner<T> {
         for(Map.Entry<T, Double> entry : scores.entrySet()) {
             double score = entry.getValue();
 
-            if(!bestScore.isPresent() || bestScore.get().compareTo(score) > 0) {
+            if (!bestScore.isPresent() || bestScore.get().compareTo(score) < 0) {
                 bestScore = Optional.of(score);
                 bestIndividual = Optional.of(entry.getKey());
             }
         }
+        System.out.println(bestScore);
         return bestIndividual;
     }
 

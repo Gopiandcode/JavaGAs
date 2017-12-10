@@ -17,7 +17,7 @@ public class RouletteWheelSelectionStrategy<T> implements SelectionStrategy<T> {
 
         population.sort(Comparator.comparing(scores::get));
 
-        Double crossoverPoint = ThreadLocalRandom.current().nextDouble(0, fitnessSum);
+        Double crossoverPoint = ThreadLocalRandom.current().nextDouble(0, fitnessSum + 1);
 
         int index = 0;
         fitnessSum = 0.0;

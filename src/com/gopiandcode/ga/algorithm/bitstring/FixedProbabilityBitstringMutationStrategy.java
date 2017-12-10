@@ -2,9 +2,25 @@ package com.gopiandcode.ga.algorithm.bitstring;
 
 import com.gopiandcode.ga.algorithm.interfaces.MutationStrategy;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class FixedProbabilityBitstringMutationStrategy implements MutationStrategy<Bitstring> {
+    private final double mutationProbability;
+
+    public FixedProbabilityBitstringMutationStrategy(double mutationProbability) {
+        this.mutationProbability = mutationProbability;
+    }
+
     @Override
     public Bitstring mutate(Bitstring individual) {
-        return null;
+        Bitstring result = individual.copy();
+        for(int i = 0; i< individual.getSize(); i++) {
+            if(ThreadLocalRandom.current().nextDouble(0, 1) < mutationProbability) {
+                result.put(i, ThreadLocalRandom.current().nextBoolean());
+            } else {
+                result.put(i, individual.get(i));
+            }
+        }
+        return result;
     }
 }

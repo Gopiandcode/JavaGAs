@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class BitstringGeneticAlgorithmBuilder {
     private int size;
-    private MutationStrategy<Bitstring> mutationStrategy = new FixedProbabilityBitstringMutationStrategy();
+    private MutationStrategy<Bitstring> mutationStrategy = new FixedProbabilityBitstringMutationStrategy(mutationProbability);
     private SelectionStrategy<Bitstring> selectionStrategy = new RouletteWheelSelectionStrategy<>();
     private CrossoverStrategy<Bitstring> crossoverStrategy = new SinglePointBitstringCrossoverStrategy();
 

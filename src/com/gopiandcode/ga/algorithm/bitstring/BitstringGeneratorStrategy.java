@@ -11,6 +11,6 @@ public class BitstringGeneratorStrategy implements GeneratorStrategy<Bitstring> 
 
     @Override
     public Bitstring generate() {
-        return null;
+        return Bitstring.generateRandom(size);
     }
 }

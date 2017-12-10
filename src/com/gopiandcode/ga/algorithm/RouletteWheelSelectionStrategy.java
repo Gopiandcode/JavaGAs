@@ -22,7 +22,7 @@ public class RouletteWheelSelectionStrategy<T> implements SelectionStrategy<T> {
         int index = 0;
         fitnessSum = 0.0;
 
-        while(fitnessSum < crossoverPoint && index < population.size()) {
+        while(fitnessSum < crossoverPoint && index < population.size()-1) {
             fitnessSum += scores.get(population.get(index));
             index += 1;
         }

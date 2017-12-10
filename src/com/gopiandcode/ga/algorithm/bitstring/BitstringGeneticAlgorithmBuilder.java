@@ -7,8 +7,8 @@ import com.gopiandcode.ga.algorithm.interfaces.*;
 import java.util.Optional;
 
 public class BitstringGeneticAlgorithmBuilder {
-    private int size;
-    private MutationStrategy<Bitstring> mutationStrategy = new FixedProbabilityBitstringMutationStrategy(mutationProbability);
+    private int populationSize = 100;
+    private MutationStrategy<Bitstring> mutationStrategy = new FixedProbabilityBitstringMutationStrategy(0.1);
     private SelectionStrategy<Bitstring> selectionStrategy = new RouletteWheelSelectionStrategy<>();
     private CrossoverStrategy<Bitstring> crossoverStrategy = new SinglePointBitstringCrossoverStrategy();
 
@@ -36,8 +36,8 @@ public class BitstringGeneticAlgorithmBuilder {
         return this;
     }
 
-    public BitstringGeneticAlgorithmBuilder withPopulationSize(int size) {
-        this.size = size;
+    public BitstringGeneticAlgorithmBuilder withPopulationSize(int populationSize) {
+        this.populationSize = populationSize;
         return this;
     }
 
@@ -60,7 +60,7 @@ public class BitstringGeneticAlgorithmBuilder {
             throw new RuntimeException("No Generator Strategy provided.");
         }
 
-        return new BasicGeneticAlgorithm<Bitstring>(size, evaluationStrategy.get(), crossoverStrategy, mutationStrategy, generatorStrategy.get(), selectionStrategy);
+        return new BasicGeneticAlgorithm<Bitstring>(populationSize, evaluationStrategy.get(), crossoverStrategy, mutationStrategy, generatorStrategy.get(), selectionStrategy);
     }
 
 }

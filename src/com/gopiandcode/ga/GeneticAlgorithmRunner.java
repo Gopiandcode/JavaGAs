@@ -57,7 +57,7 @@ public class GeneticAlgorithmRunner<T> {
             // log average fitness
             Optional<Double> averageFitness = findAverageFitness(fitness);
             String fitnessString = String.valueOf(averageFitness);
-            this.loggingStrategy.info("Iteration[" + i  +"/" + iterations +"]: Average Fitness = " + fitnessString);
+            this.loggingStrategy.info("Iteration[" + (i + 1) +"/" + iterations +"]: Average Fitness = " + fitnessString);
 
             // train the population
             this.algorithm.runTrainIteration(fitness);

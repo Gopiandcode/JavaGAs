@@ -15,38 +15,6 @@ public class KnapsackProblem {
     public final int maximumCapacity;
     public final ArrayList<Item> items;
 
-    private static class Item {
-        private final int benefit;
-        private final int volume;
-
-        private Item(int benefit, int volume) {
-            this.benefit = benefit;
-            this.volume = volume;
-        }
-    }
-
-    public static class Solution {
-
-        private final ArrayList<Integer> count;
-
-        public Solution(ArrayList<Integer> count) {
-            this.count = count;
-        }
-
-        @Override
-        public String toString() {
-            StringBuilder builder = new StringBuilder();
-            builder.append("Solution{" +
-                    "count=" + count +
-                    '}');
-            for (Integer i : count) {
-                builder.append(i + ",");
-            }
-            return builder.toString();
-        }
-
-    }
-
 
     public KnapsackProblem(int maximumCapacity, ArrayList<Item> items) {
         this.maximumCapacity = maximumCapacity;
@@ -55,14 +23,15 @@ public class KnapsackProblem {
 
 
     public Optional<Integer> score(Solution solution) {
-        if (solution.count.size() != items.size()) throw new RuntimeException("Solution has more entries than items in this problem instance");
+        ArrayList<Integer> solutionItemCounts = solution.getSolutionItemCounts();
+        if (solutionItemCounts.size() != items.size()) throw new RuntimeException("Solution has more entries than items in this problem instance");
 
         int volume = 0;
         int benefit = 0;
 
         for (int i = 0; i < items.size(); i++) {
-            volume += solution.count.get(i) * items.get(i).volume;
-            benefit += solution.count.get(i) * items.get(i).benefit;
+            volume += solutionItemCounts.get(i) * items.get(i).getVolume();
+            benefit += solutionItemCounts.get(i) * items.get(i).getBenefit();
             if (volume >= maximumCapacity) return Optional.empty();
         }
 
@@ -79,8 +48,8 @@ public class KnapsackProblem {
         KnapsackProblem problem = new KnapsackProblem(13, items);
 
 
-        GaussianConvolutionListMutationStrategy<Integer> mutationStrategy = new GaussianConvolutionListMutationStrategy<>(0.1, 0, 50, 2.5, Double::intValue);
-        ListGeneratorStrategy<Integer> generatorStrategy = new ListGeneratorStrategy<>(3, () -> Math.max(Math.min(ThreadLocalRandom.current().nextInt(0, 20), 20), 0));
+        GaussianConvolutionListMutationStrategy<Integer> mutationStrategy = new GaussianConvolutionListMutationStrategy<>(0.5, 0, 10, 2.5, Double::intValue);
+        ListGeneratorStrategy<Integer> generatorStrategy = new ListGeneratorStrategy<>(3, () -> Math.max(Math.min(ThreadLocalRandom.current().nextInt(0, 10), 10), 0));
 
         GeneticAlgorithm<List<Integer>> geneticAlgorithm = new ListGeneticAlgorithmBuilder<Integer>()
                 .withMutationStrategy(mutationStrategy)

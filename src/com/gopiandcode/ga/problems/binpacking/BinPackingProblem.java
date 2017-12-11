@@ -16,18 +16,6 @@ public class BinPackingProblem {
     private final int bucketCapcacity;
     private final List<Integer> items;
 
-    private static class Solution {
-        private final List<Integer> permutation;
-
-        private Solution(List<Integer> permutation) {
-            this.permutation = permutation;
-        }
-
-        public List<Integer> getPermutation() {
-            return permutation;
-        }
-    }
-
     public BinPackingProblem(int bucketCapcacity, List<Integer> items) {
         this.bucketCapcacity = bucketCapcacity;
         this.items = items;
